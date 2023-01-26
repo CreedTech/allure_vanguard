@@ -6,26 +6,17 @@ class ArticleResultModel {
 
   ArticleResultModel({required this.articles});
 
-  factory ArticleResultModel.fromJson(Map<String, dynamic> json) {
-    var articles = List<ArticleModel>.empty(growable: true);
-    if (json['results'] != null) {
-      json['results'].forEach((v) {
-        final articleModel = ArticleModel.fromJson(v);
-        if (_isValidMovie(articleModel)) {
-          articles.add(articleModel);
-        }
-      });
-    }
-    return ArticleResultModel(articles: articles);
-  }
+  ArticleResultModel.fromJson(Map<String, dynamic> json)
+      : articles =
+  (json["articles"] as List).map((i) => new ArticleModel.fromJson(i)).toList();
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['results'] = this.articles.map((v) => v.toJson()).toList();
+    data['articles'] = this.articles.map((v) => v.toJson()).toList();
     return data;
   }
 }
 bool _isValidMovie(ArticleModel articleModel) {
-  return articleModel.source!.name!.isNotEmpty &&
+  return articleModel.id != 1 &&
       articleModel.title.isNotEmpty;
 }

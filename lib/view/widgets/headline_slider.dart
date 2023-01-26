@@ -33,7 +33,8 @@ class _HeadlineSliderWidgetState extends State<HeadlineSliderWidget> {
 
   Widget _buildHeadlineSliderWidget(ArticleResponse data) {
     List<ArticleModel> articles = data.articles;
-    return Container(
+    return
+      Container(
       child: CarouselSlider(
         options: CarouselOptions(
           enlargeCenterPage: false,
@@ -49,101 +50,101 @@ class _HeadlineSliderWidgetState extends State<HeadlineSliderWidget> {
     );
   }
 
-  getExpenseSliders(List<ArticleModel> articles) {
-    return articles
-        .map(
-          (article) => GestureDetector(
-            onTap: () {
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //         builder: (context) => DetailNews(
-              //           article: article,
-              //         )));
-            },
-            child: Container(
-              padding: const EdgeInsets.only(
-                  left: 10.0, right: 10.0, top: 10.0, bottom: 10.0),
-              child: Stack(
-                children: <Widget>[
-                  Container(
-                    decoration: new BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      image: new DecorationImage(
-                        fit: BoxFit.cover,
-                        image: article.img == null
-                            ? AssetImage(AppImages.failureImage)
-                            : NetworkImage(article.img!) as ImageProvider,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        // borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                        // gradient: LinearGradient(
-                        //     begin: Alignment.bottomCenter,
-                        //     end: Alignment.topCenter,
-                        //     stops: [
-                        //       0.1,
-                        //       0.9
-                        //     ],
-                        //     colors: [
-                        //       Colors.black.withOpacity(0.9),
-                        //       Colors.white.withOpacity(0.0)
-                        //     ]),
+    getExpenseSliders(List<ArticleModel> articles) {
+      return articles
+          .map(
+            (article) => GestureDetector(
+              onTap: () {
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => DetailNews(
+                //           article: article,
+                //         )));
+              },
+              child: Container(
+                padding: const EdgeInsets.only(
+                    left: 10.0, right: 10.0, top: 10.0, bottom: 10.0),
+                child: Stack(
+                  children: <Widget>[
+                    Container(
+                      decoration: new BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        image: new DecorationImage(
+                          fit: BoxFit.cover,
+                          image: article.img == null
+                              ? AssetImage(AppImages.failureImage)
+                              : NetworkImage(article.img!) as ImageProvider,
                         ),
-                  ),
-                  Positioned(
-                    bottom: 10.0,
-                    child: Container(
-                      padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                      width: 350.0,
-                      child: Column(
-                        children: <Widget>[
-                          Text(
-                            article.title!.toUpperCase(),
-                            style: TextStyle(
-                                height: 1.5,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12.0),
-                          ),
-                        ],
                       ),
                     ),
-                  ),
-                  Positioned(
-                    bottom: 70.0,
-                    left: 10.0,
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(5.0),
-                      // width: double.infinity,
-                      // height: 20,
+                    Container(
                       decoration: BoxDecoration(
-                        color: AppPalette.accentColor,
-                      ),
-                      child: Text(
-                        article.source!.name!.toUpperCase(),
-                        style: TextStyle(
-                            color: AppPalette.whiteColor, fontSize: 9.0),
+                          // borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                          // gradient: LinearGradient(
+                          //     begin: Alignment.bottomCenter,
+                          //     end: Alignment.topCenter,
+                          //     stops: [
+                          //       0.1,
+                          //       0.9
+                          //     ],
+                          //     colors: [
+                          //       Colors.black.withOpacity(0.9),
+                          //       Colors.white.withOpacity(0.0)
+                          //     ]),
+                          ),
+                    ),
+                    Positioned(
+                      bottom: 10.0,
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                        width: 350.0,
+                        child: Column(
+                          children: <Widget>[
+                            Text(
+                              article.title!.toUpperCase(),
+                              style: TextStyle(
+                                  height: 1.5,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12.0),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  // Positioned(
-                  //     bottom: 10.0,
-                  //     right: 10.0,
-                  //     child: Text(
-                  //       timeUntil(DateTime.parse(article.date!)),
-                  //       style: TextStyle(color: Colors.white54, fontSize: 9.0),
-                  //     ),),
-                ],
+                    Positioned(
+                      bottom: 70.0,
+                      left: 10.0,
+                      child: Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(5.0),
+                        // width: double.infinity,
+                        // height: 20,
+                        decoration: BoxDecoration(
+                          color: AppPalette.accentColor,
+                        ),
+                        child: Text(
+                          article.source!.name!.toUpperCase(),
+                          style: TextStyle(
+                              color: AppPalette.whiteColor, fontSize: 9.0),
+                        ),
+                      ),
+                    ),
+                    // Positioned(
+                    //     bottom: 10.0,
+                    //     right: 10.0,
+                    //     child: Text(
+                    //       timeUntil(DateTime.parse(article.date!)),
+                    //       style: TextStyle(color: Colors.white54, fontSize: 9.0),
+                    //     ),),
+                  ],
+                ),
               ),
             ),
-          ),
-        )
-        .toList();
-  }
+          )
+          .toList();
+    }
 
   String timeUntil(DateTime date) {
     return timeago.format(date, allowFromNow: true, locale: 'en');

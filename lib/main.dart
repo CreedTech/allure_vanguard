@@ -1,45 +1,28 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
-import 'package:provider/provider.dart';
+import 'dart:async';
 
-import 'app.dart';
-import 'config/constants/palettes.dart';
-import 'domain/repositories/shared_preferences_store.dart';
-import 'domain/services/get_it/index.dart';
-import 'domain/services/navigation/index.dart';
+import 'package:allure_vanguard/presentation/article_app.dart';
+import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
+import 'package:flutter/services.dart';
+import 'data/tables/article_table.dart';
+import 'di/get_it.dart' as getIt;
+
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  GetIt getIt = GetIt.instance;
-  setupLocator(getIt);
+  unawaited(
+      SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]));
+  final appDocumentDir = await path_provider.getApplicationDocumentsDirectory();
+  Hive.init(appDocumentDir.path);
+  Hive.registerAdapter(ArticleTableAdapter());
+  unawaited(getIt.init());
 
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: AppPalette.transparentColor,
-  ));
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-      overlays: [SystemUiOverlay.top]
-  );
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]
-  ).then((_) {
-    runApp(
-      // MultiBlocProvider(
-      //   providers: [
-      //     BlocProvider(create: (_) => getIt.get<SharedPreferencesStore>(),)
-      //   ],
-      //   child:
-        MultiProvider(
-          providers: [
-            Provider(create: (_) => getIt.get<NavigationService>()),
-            Provider(create: (_) => getIt.get<SharedPreferencesStore>()),
-          ],
-          child: const MyApp(),
-        ),
-      // ),
-    );
-  });
+
+  runApp(ArticleApp());
 }
+
+
 
 

@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: PageView(
           controller: _pageController,
-          physics: const NeverScrollableScrollPhysics(),
+          // physics: const NeverScrollableScrollPhysics(),
           children: List.generate(
               bottomBarPages.length, (index) => bottomBarPages[index]),
         ),
