@@ -30,10 +30,10 @@ class ArticleListViewBuilder extends StatelessWidget {
             final ArticleEntity article = articles[index];
             return ArticleTabCardWidget(
               articleId: article.id,
-              title: article.title,
-              img: article.title, author: article.author,
+              title: article.yoastHeadJson!.title!,
+              img: article.yoastHeadJson!.ogImage![0].url!, author: article.yoastHeadJson!.author,
               // categories: article.categories,
-              date: article.date,
+              date: article.date!, categories: article.yoastHeadJson!.schema!.graph![0].articleSection!,
             );
           },
         ),

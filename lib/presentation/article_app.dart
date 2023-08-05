@@ -1,4 +1,6 @@
 import 'package:allure_vanguard/config/constants/palettes.dart';
+import 'package:allure_vanguard/presentation/journeys/home/home_screen.dart';
+import 'package:allure_vanguard/presentation/journeys/intro/intro_screen.dart';
 import 'package:allure_vanguard/presentation/themes/theme_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,28 +56,34 @@ class _ArticleAppState extends State<ArticleApp> {
             debugShowCheckedModeBanner: false,
             title: 'Allure Vanguard',
             theme: ThemeData(
-              unselectedWidgetColor: AppPalette.drawerColor,
-              primaryColor:
-                  theme == Themes.dark ? AppPalette.whiteColor : Colors.white,
-              scaffoldBackgroundColor:
-                  theme == Themes.dark ? AppPalette.whiteColor : Colors.white,
+              unselectedWidgetColor: AppPalette.accentColor,
+              primaryColor: theme == Themes.dark
+                  ? AppPalette.blackColor
+                  : AppPalette.whiteColor,
+              scaffoldBackgroundColor: theme == Themes.dark
+                  ? AppPalette.blackColor
+                  : AppPalette.whiteColor,
               cardTheme: CardTheme(
                 color: theme == Themes.dark
-                    ? Colors.white
+                    ? AppPalette.whiteColor
                     : AppPalette.blackColor,
               ),
               visualDensity: VisualDensity.adaptivePlatformDensity,
               textTheme: theme == Themes.dark
                   ? ThemeText.getTextTheme()
                   : ThemeText.getLightTextTheme(),
-              appBarTheme: const AppBarTheme(elevation: 0),
+              appBarTheme: AppBarTheme(elevation: 0,
+              backgroundColor: theme == Themes.dark
+                  ? AppPalette.blackColor
+                  : AppPalette.whiteColor,
+              ),
               inputDecorationTheme: InputDecorationTheme(
                 hintStyle: Theme.of(context).textTheme.greySubtitle1,
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
                     color: theme == Themes.dark
-                        ? Colors.white
-                        : AppPalette.accentColor,
+                        ? AppPalette.whiteColor
+                        : AppPalette.blackColor,
                   ),
                 ),
                 enabledBorder: UnderlineInputBorder(
@@ -89,11 +97,11 @@ class _ArticleAppState extends State<ArticleApp> {
                         : Brightness.light,
                   ),
             ),
-            // builder: (context, child) {
-            //   return LoadingScreen(
-            //     screen: child!,
-            //   );
-            // },
+            builder: (context, child) {
+              return LoadingScreen(
+                screen: child!,
+              );
+            },
             initialRoute: RouteList.initial,
             onGenerateRoute: (RouteSettings settings) {
               final routes = Routes.getRoutes(settings);

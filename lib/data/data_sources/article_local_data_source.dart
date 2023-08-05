@@ -40,6 +40,6 @@ class ArticleLocalDataSourceImpl extends ArticleLocalDataSource {
   @override
   Future<void> saveArticle(ArticleTable articleTable) async {
     final articleBox = await Hive.openBox('articleBox');
-    await articleBox.put(articleTable.title, articleTable);
+    await articleBox.put(articleTable.id, articleTable);
   }
 }

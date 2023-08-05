@@ -16,7 +16,7 @@ class ArticleCarouselError extends ArticleCarouselState {
 }
 
 class ArticleCarouselLoaded extends ArticleCarouselState {
-  final List articles;
+  final List<ArticleEntity> articles;
   final int defaultIndex;
 
   const ArticleCarouselLoaded({

@@ -6,17 +6,17 @@ class ArticleResultModel {
 
   ArticleResultModel({required this.articles});
 
-  ArticleResultModel.fromJson(Map<String, dynamic> json)
+  ArticleResultModel.fromJson(Map<dynamic, dynamic> json)
       : articles =
   (json["articles"] as List).map((i) => new ArticleModel.fromJson(i)).toList();
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+  Map<dynamic, dynamic> toJson() {
+    final Map<dynamic, dynamic> data = new Map<dynamic, dynamic>();
     data['articles'] = this.articles.map((v) => v.toJson()).toList();
     return data;
   }
 }
 bool _isValidMovie(ArticleModel articleModel) {
   return articleModel.id != 1 &&
-      articleModel.title.isNotEmpty;
+      articleModel.yoastHeadJson!.title!.isNotEmpty;
 }

@@ -23,6 +23,7 @@ class _ArticleTabbedWidgetState extends State<ArticleTabbedWidget>
       BlocProvider.of<LatestArticlesCubit>(context);
 
   int currentTabIndex = 0;
+  int page = 2;
 
   @override
   void initState() {
@@ -90,7 +91,7 @@ class _ArticleTabbedWidgetState extends State<ArticleTabbedWidget>
         } else if (state is LatestArticlesError) {
           return AppErrorWidget(
             errorType: state.errorType,
-            onPressed: () => latestArticlesCubit.loadArticle(),
+            onPressed: () => latestArticlesCubit.loadArticle(page),
             //     latestArticlesCubit.movieTabChanged(
             //   currentTabIndex: state.currentTabIndex,
             // ),

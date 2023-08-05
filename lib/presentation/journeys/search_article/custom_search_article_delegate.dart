@@ -25,7 +25,9 @@ class CustomSearchDelegate extends SearchDelegate {
       IconButton(
         icon: Icon(
           Icons.clear,
-          color: query.isEmpty ? Colors.grey : Theme.of(context).colorScheme.secondary,
+          color: query.isEmpty
+              ? Colors.grey
+              : Theme.of(context).colorScheme.secondary,
         ),
         onPressed: query.isEmpty ? null : () => query = '',
       ),
@@ -41,7 +43,7 @@ class CustomSearchDelegate extends SearchDelegate {
       child: Icon(
         Icons.arrow_back_ios,
         color: context.read<ThemeCubit>().state == Themes.dark
-            ? Colors.white
+            ? AppPalette.whiteColor
             : AppPalette.accentColor,
         size: Sizes.dimen_12.h,
       ),
@@ -69,17 +71,26 @@ class CustomSearchDelegate extends SearchDelegate {
                 child: Text(
                   TranslationConstants.noArticlesSearched,
                   textAlign: TextAlign.center,
+                  style: TextStyle(
+                      height: 1.5,
+                      color: context.read<ThemeCubit>().state == Themes.dark
+                          ? AppPalette.whiteColor
+                          : AppPalette.accentColor,
+                      fontWeight: FontWeight.bold,
+                      overflow: TextOverflow.fade,
+                      fontSize: 12.0),
                 ),
               ),
             );
           }
-          return ListView.builder(
-            itemBuilder: (context, index) => SearchArticleCard(
-              article: articles[index],
-            ),
-            itemCount: articles.length,
-            scrollDirection: Axis.vertical,
-          );
+          return Container();
+          //   ListView.builder(
+          //   itemBuilder: (context, index) => SearchArticleCard(
+          //     article: articles[index],
+          //   ),
+          //   itemCount: articles.length,
+          //   scrollDirection: Axis.vertical,
+          // );
         } else {
           return const SizedBox.shrink();
         }

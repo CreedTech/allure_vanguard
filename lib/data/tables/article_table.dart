@@ -2,6 +2,7 @@ import 'package:allure_vanguard/data/models/source_model.dart';
 import 'package:hive/hive.dart';
 
 import '../../domain/entities/article_entity.dart';
+import '../models/yoast_head_json.dart';
 
 
 part 'article_table.g.dart';
@@ -12,27 +13,27 @@ class ArticleTable extends ArticleEntity {
   final int id;
 
   @HiveField(1)
-  final String title;
+  final DateTime date;
+
 
   @HiveField(2)
-  final DateTime date;
+  final YoastHeadJson? yoastHeadJson;
 
   ArticleTable({
     required this.id,
-    required this.title,
+    required this.yoastHeadJson,
     required this.date,
   }) : super(
     id: id,
-    title: title,
     date: date,
-    content: '',
+    yoastHeadJson: yoastHeadJson,
   );
 
   factory ArticleTable.fromArticleEntity(ArticleEntity articleEntity) {
     return ArticleTable(
       id: articleEntity.id,
-      title: articleEntity.title,
       date: articleEntity.date,
+      yoastHeadJson: articleEntity.yoastHeadJson,
     );
   }
 }

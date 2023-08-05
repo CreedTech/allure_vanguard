@@ -11,7 +11,7 @@ abstract class ArticleRemoteDataSource {
   Future<List<ArticleModel>> getSources();
   Future<List<ArticleModel>> search(String value);
   Future<List<ArticleModel>> getHotNews();
-  Future<List> getNews();
+  Future<List<ArticleModel>> getNews(int page);
   Future<List<ArticleModel>> getSourceNews(int sourceId);
   Future<ArticleDetailModel> getArticleDetail(int id);
 }
@@ -56,8 +56,9 @@ class ArticleRemoteDataSourceImpl extends ArticleRemoteDataSource {
   }
   @override
   Future<ArticleDetailModel> getArticleDetail(int id) async {
-    final response = await _client.get('article/$id');
+    final response = await _client.get('posts/$id');
     final article = ArticleDetailModel.fromJson(response);
+    print(article);
     return article;
     // if (_isValidArticleDetail(article)) {
     //   return article;
@@ -66,7 +67,7 @@ class ArticleRemoteDataSourceImpl extends ArticleRemoteDataSource {
   }
 
   bool _isValidArticleDetail(ArticleDetailModel article) {
-    return article.title.isNotEmpty &&
+    return article.yoastHeadJson.title!.isNotEmpty &&
         // article.title.isNotEmpty &&
         article.id != 1;
   }
@@ -92,13 +93,18 @@ class ArticleRemoteDataSourceImpl extends ArticleRemoteDataSource {
   }
 
   @override
-  Future<List> getNews() async {
-    // var params = {"apiKey": ApiConstants.API_KEY, "country": "us"};
-    final response = await _client.get('posts?_embed');
-    final  articles = ArticleResultModel.fromJson(response).articles as dynamic;
+  Future<List<ArticleModel>> getNews(int page) async {
+    var params = {"page": page};
+    final List<ArticleModel> articles = [];
+    final response = await _client.get('posts', params: params);
+    for(Map<dynamic, dynamic> i in response){
+      articles.add(ArticleModel.fromJson(i));
+      // print(i.toString());
+    }
+    // final  articles = ArticleResultModel.fromJson(response).articles;
     // List articles = json.decode(response.body);
     // return jsonResponse.map((job) => new ProductList.fromJson(job)).toList();
-    print(articles);
+    // print(articles);
     return articles;
   }
 }

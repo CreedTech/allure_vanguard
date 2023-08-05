@@ -38,10 +38,11 @@ class BookMarkArticleCardWidget extends StatelessWidget {
           child: Stack(
             children: <Widget>[
               CachedNetworkImage(
-                imageUrl: article.title,
+                imageUrl: article.yoastHeadJson?.ogImage![0].url! ?? '',
                 fit: BoxFit.cover,
                 width: Sizes.dimen_100.h,
               ),
+              Text(article.id.toString()),
               Align(
                 alignment: Alignment.topRight,
                 child: GestureDetector(

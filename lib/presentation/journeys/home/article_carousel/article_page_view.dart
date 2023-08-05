@@ -6,7 +6,7 @@ import '../../../../domain/entities/article_entity.dart';
 import 'animated_article_card_widget.dart';
 
 class ArticlePageView extends StatefulWidget {
-  final List articles;
+  final List<ArticleEntity> articles;
   final int initialPage;
 
   const ArticlePageView({
@@ -48,12 +48,13 @@ class _ArticlePageViewState extends State<ArticlePageView> {
       child: PageView.builder(
         controller: _pageController,
         itemBuilder: (context, index) {
-          final ArticleEntity article = widget.articles[index];
+          final article = widget.articles[index];
           return AnimatedArticleCardWidget(
             index: index,
             pageController: _pageController!,
               articleId: article.id,
-            img: article.title, title: article.title,
+            img: article.yoastHeadJson!.ogImage![0].url!, title: article.yoastHeadJson!.title!,
+            categories: article.yoastHeadJson!.schema!.graph![0].articleSection!,
             // categories: article.categories,
           );
         },

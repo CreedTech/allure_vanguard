@@ -1,3 +1,4 @@
+import 'package:allure_vanguard/domain/entities/article_page_params.dart';
 import 'package:allure_vanguard/domain/usecases/get_hot_news.dart';
 import 'package:allure_vanguard/domain/usecases/get_news.dart';
 import 'package:bloc/bloc.dart';
@@ -22,9 +23,9 @@ class LatestArticlesCubit extends Cubit<LatestArticlesState> {
     required this.loadingCubit,
   }) : super(LatestArticlesInitial());
 
-  void loadArticle({int defaultIndex = 0}) async {
+  void loadArticle(int page, {int defaultIndex = 0}) async {
     loadingCubit.show();
-    final articlesEither = await getNews(NoParams());
+    final articlesEither = await getNews(ArticlePageParams(page));
     emit(articlesEither.fold(
           (l) => LatestArticlesError(l.appErrorType),
           (articles) {

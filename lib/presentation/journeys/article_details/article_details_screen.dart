@@ -68,7 +68,7 @@ class _ArticleDetailsScreenState extends State<ArticleDetailsScreen> {
                         vertical: Sizes.dimen_8.h,
                       ),
                       child: Text(
-                        articleDetail.content ?? '',
+                        articleDetail.yoastHeadJson.ogDescription ?? '',
                         style: Theme.of(context).textTheme.bodyText2,
                       ),
                     ),
@@ -78,7 +78,7 @@ class _ArticleDetailsScreenState extends State<ArticleDetailsScreen> {
             } else if (state is ArticleDetailError) {
               return AppErrorWidget(
                 errorType: state.errorType,
-                onPressed: () => {},
+                onPressed: () => _articleDetailCubit.loadArticleDetail(widget.articleDetailArguments.articleId),
                 //     latestArticlesCubit.movieTabChanged(
                 //   currentTabIndex: state.currentTabIndex,
                 // ),

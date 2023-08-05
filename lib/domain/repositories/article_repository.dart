@@ -9,7 +9,7 @@ abstract class ArticleRepository {
   Future<Either<AppError, List<ArticleEntity>>> getSources();
   Future<Either<AppError, List<ArticleEntity>>> getSearchedArticles(String value);
   Future<Either<AppError, List<ArticleEntity>>> getHotNews();
-  Future<Either<AppError, List>> getNews();
+  Future<Either<AppError, List<ArticleEntity>>> getNews(int page);
   Future<Either<AppError, List<ArticleEntity>>> getSourceNews(int sourceId);
   Future<Either<AppError, ArticleDetailEntity>> getArticleDetail(int id);
   Future<Either<AppError, void>> saveArticle(ArticleEntity articleEntity);

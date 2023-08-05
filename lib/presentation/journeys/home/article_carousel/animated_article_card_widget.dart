@@ -11,7 +11,7 @@ class AnimatedArticleCardWidget extends StatelessWidget {
   final int index;
   final int articleId;
   final String? img;
-  // final Categories? categories;
+  final List<String> categories;
   final String title;
   final PageController pageController;
 
@@ -22,7 +22,7 @@ class AnimatedArticleCardWidget extends StatelessWidget {
     this.img,
     required this.pageController,
     // this.categories,
-    required this.title,
+    required this.title, required this.categories,
   }) : super(key: key);
 
   @override
@@ -64,6 +64,7 @@ class AnimatedArticleCardWidget extends StatelessWidget {
         img: img,
         // categories: categories,
         title: title,
+        categories: categories.join(' | '),
       ),
     );
   }

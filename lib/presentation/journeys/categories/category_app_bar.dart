@@ -22,7 +22,9 @@ class CategoryAppBar extends StatelessWidget {
       ),
       child: Row(
         children: <Widget>[
-          Expanded(child: Logo(height: Sizes.dimen_14)),
+          Expanded(
+            child: Logo(height: Sizes.dimen_14),
+          ),
           IconButton(
             onPressed: () {
               showSearch(
@@ -35,7 +37,7 @@ class CategoryAppBar extends StatelessWidget {
             icon: Icon(
               Icons.search,
               color: context.read<ThemeCubit>().state == Themes.dark
-                  ? AppPalette.accentColor
+                  ? AppPalette.whiteColor
                   : AppPalette.accentColor,
               size: Sizes.dimen_12.h,
             ),

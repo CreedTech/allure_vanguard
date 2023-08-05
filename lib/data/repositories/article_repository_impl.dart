@@ -62,10 +62,10 @@ class ArticleRepositoryImpl extends ArticleRepository {
   }
 
   @override
-  Future<Either<AppError, List>> getNews() async {
+  Future<Either<AppError, List<ArticleEntity>>> getNews(int page) async {
     try {
       //5
-      final articles = await remoteDataSource.getNews();
+      final articles = await remoteDataSource.getNews(page);
       return Right(articles);
     } on SocketException {
       return Left(AppError(AppErrorType.network));

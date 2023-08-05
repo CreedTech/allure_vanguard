@@ -35,6 +35,6 @@ class ApiClient {
 
     return Uri.parse(
         // '${ApiConstants.BASE_URL}$path?api_key=${ApiConstants.API_KEY}$paramsString');
-        '${ApiConstants.BASE_URL}$path$paramsString');
+        '${ApiConstants.BASE_URL}$path?paramsString');
   }
 }

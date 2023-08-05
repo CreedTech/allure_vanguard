@@ -12,7 +12,7 @@ import '../../article_details/article_detail_arguments.dart';
 class ArticleCardWidget extends StatelessWidget {
   final int articleId;
   final String? img;
-  // final Categories? categories;
+  final String categories;
   final String title;
 
   const ArticleCardWidget({
@@ -20,7 +20,7 @@ class ArticleCardWidget extends StatelessWidget {
     required this.articleId,
     this.img,
     // this.categories,
-    required this.title,
+    required this.title, required this.categories,
   }) : super(key: key);
 
   @override
@@ -98,7 +98,7 @@ class ArticleCardWidget extends StatelessWidget {
                     color: AppPalette.accentColor,
                   ),
                   child: Text(
-                    articleId.toString(),
+                    categories,
                     style:
                         TextStyle(color: AppPalette.whiteColor, fontSize: 9.0),
                   ),

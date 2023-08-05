@@ -32,7 +32,7 @@ class BigPoster extends StatelessWidget {
             ),
           ),
           child: CachedNetworkImage(
-            imageUrl: article.title,
+            imageUrl: article.yoastHeadJson.ogImage![0].url!,
             width: ScreenUtil.screenWidth,
           ),
         ),
@@ -42,15 +42,15 @@ class BigPoster extends StatelessWidget {
           bottom: 0,
           child: ListTile(
             title: Text(
-              article.title,
+              article.yoastHeadJson.title!,
               style: Theme.of(context).textTheme.headline5,
             ),
             subtitle: Text(
-              article.title,
+              article.yoastHeadJson.schema!.graph![0].articleSection.toString(),
               style: Theme.of(context).textTheme.greySubtitle1,
             ),
             trailing: Text(
-              article.author.toString(),
+              article.yoastHeadJson.author!,
               style: Theme.of(context).textTheme.violetHeadline6,
             ),
           ),

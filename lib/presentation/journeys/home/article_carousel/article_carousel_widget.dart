@@ -4,7 +4,7 @@ import '../../../../domain/entities/article_entity.dart';
 import 'article_page_view.dart';
 
 class ArticleCarouselWidget extends StatelessWidget {
-  final List articles;
+  final List<ArticleEntity> articles;
   final int defaultIndex;
 
   const ArticleCarouselWidget({

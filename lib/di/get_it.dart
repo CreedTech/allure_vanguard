@@ -27,6 +27,7 @@ import '../presentation/blocs/article_carousel/article_carousel_cubit.dart';
 import '../presentation/blocs/article_detail/article_detail_cubit.dart';
 import '../presentation/blocs/favourite/favorite_cubit.dart';
 import '../presentation/blocs/loading/loading_cubit.dart';
+import '../presentation/blocs/search_article/search_article_cubit.dart';
 import '../presentation/blocs/theme/theme_cubit.dart';
 
 final getItInstance = GetIt.I;
@@ -89,6 +90,13 @@ Future init() async {
       loadingCubit: getItInstance(),
       getArticleDetail: getItInstance(),
       favoriteCubit: getItInstance(),
+    ),
+  );
+
+  getItInstance.registerFactory(
+        () => SearchArticleCubit(
+      loadingCubit: getItInstance(),
+      searchArticles: getItInstance(),
     ),
   );
   getItInstance.registerFactory(

@@ -1,3 +1,4 @@
+import 'package:allure_vanguard/domain/entities/article_page_params.dart';
 import 'package:allure_vanguard/domain/usecases/usecase.dart';
 import 'package:dartz/dartz.dart';
 
@@ -6,7 +7,7 @@ import '../entities/app_error.dart';
 import '../entities/no_params.dart';
 import '../repositories/article_repository.dart';
 
-class GetNews extends UseCase<List, NoParams> {
+class GetNews extends UseCase<List<ArticleEntity>, ArticlePageParams> {
   //1
   final ArticleRepository repository;
 
@@ -15,8 +16,8 @@ class GetNews extends UseCase<List, NoParams> {
 
   //3
   @override
-  Future<Either<AppError, List>> call(NoParams noParams) async {
+  Future<Either<AppError, List<ArticleEntity>>> call(ArticlePageParams articlePageParams) async {
     //4
-    return await repository.getNews();
+    return await repository.getNews(articlePageParams.page);
   }
 }
