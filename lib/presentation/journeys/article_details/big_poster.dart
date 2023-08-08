@@ -43,14 +43,14 @@ class BigPoster extends StatelessWidget {
           child: ListTile(
             title: Text(
               article.yoastHeadJson.title!,
-              style: Theme.of(context).textTheme.headline5,
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
             subtitle: Text(
               article.yoastHeadJson.schema!.graph![0].articleSection.toString(),
               style: Theme.of(context).textTheme.greySubtitle1,
             ),
             trailing: Text(
-              article.yoastHeadJson.author!,
+              article.yoastHeadJson.author,
               style: Theme.of(context).textTheme.violetHeadline6,
             ),
           ),

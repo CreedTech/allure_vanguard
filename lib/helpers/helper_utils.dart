@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../injector.dart';
-import '../errors/error.dart';
-import '../errors/error_handler.dart';
 
 class NavigatorHelper {
   GlobalKey<NavigatorState> kNavKey = GlobalKey<NavigatorState>();

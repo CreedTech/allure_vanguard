@@ -33,7 +33,7 @@ class ArticleListViewBuilder extends StatelessWidget {
               title: article.yoastHeadJson!.title!,
               img: article.yoastHeadJson!.ogImage![0].url!, author: article.yoastHeadJson!.author,
               // categories: article.categories,
-              date: article.date!, categories: article.yoastHeadJson!.schema!.graph![0].articleSection!,
+              date: article.date, categories: article.yoastHeadJson!.schema!.graph![0].articleSection!,
             );
           },
         ),

@@ -68,8 +68,8 @@ class _ArticleDetailsScreenState extends State<ArticleDetailsScreen> {
                         vertical: Sizes.dimen_8.h,
                       ),
                       child: Text(
-                        articleDetail.yoastHeadJson.ogDescription ?? '',
-                        style: Theme.of(context).textTheme.bodyText2,
+                        articleDetail.yoastHeadJson.ogDescription,
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ),
                   ],

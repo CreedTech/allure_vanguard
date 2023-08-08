@@ -1,10 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-import '../../data/models/article_detail_model.dart';
-import '../../data/models/source_model.dart';
 import '../../data/models/yoast_head_json.dart';
 import 'article_detail_entity.dart';
-import 'dart:convert';
 
 class ArticleEntity extends Equatable {
   final int id;

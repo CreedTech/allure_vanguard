@@ -16,7 +16,7 @@ class ArticleResultModel {
     return data;
   }
 }
-bool _isValidMovie(ArticleModel articleModel) {
-  return articleModel.id != 1 &&
-      articleModel.yoastHeadJson!.title!.isNotEmpty;
-}
+// bool _isValidMovie(ArticleModel articleModel) {
+//   return articleModel.id != 1 &&
+//       articleModel.yoastHeadJson.title!.isNotEmpty;
+// }
